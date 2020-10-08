@@ -20,9 +20,9 @@ const primaryDark = '#24282f';
 const secondary = '#ff9800';
 const primary2 = '#edc566';
 
-export const {
+export default {
   light: {
-    color: {
+    colors: {
       primary: primaryLight,
       sidebar: {
         buttonBackground: buttonBgLight
@@ -30,7 +30,7 @@ export const {
     }
   },
   dark: {
-    color: {
+    colors: {
       primary: primaryDark,
       sidebar: {
         buttonBackground: buttonBgDark
