@@ -26,7 +26,9 @@ export default {
       primary: primaryLight,
       sidebar: {
         buttonBackground: buttonBgLight
-      }
+      },
+      logoBg: '#fff',
+      
     }
   },
   dark: {
