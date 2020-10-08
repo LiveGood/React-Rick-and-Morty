@@ -18,9 +18,11 @@ const AppElement = styled.div`
 function App() {
   return (
     <ThemeProvider theme={{}}>
-      <AppElement>
-        <div>Hello</div>
-      </AppElement>
+      <Router history={BrowserHistory}>
+        <AppElement>
+          <div>Hello</div>
+        </AppElement>
+      </Router>
     </ThemeProvider>
   );
 }
