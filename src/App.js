@@ -15,7 +15,6 @@ const AppElement = styled.div`
   }
 `;
 
-
 function App() {
   return (
     <ThemeProvider theme={{}}>
