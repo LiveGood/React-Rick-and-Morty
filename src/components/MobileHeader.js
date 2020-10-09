@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Logo as LogoSVG } from 'assets/svg';
-import { NavbarLogo } from '../GlobalStyle'
+import { NavbarLogo, HeaderSidebarMainStyles } from '../GlobalStyle'
 
 const Header = styled.div`
-  position: fixed;
-	top: 0;
-	left: 0;
-	height: ${({ theme }) => theme.mobileMenuHeight}px;
-	background: ${({ theme }) => theme.colors.primary};
+  ${HeaderSidebarMainStyles}
 	width: 100%;
-
+	height: ${({ theme }) => theme.mobileMenuHeight}px;
   display: flex;
 	align-content: center;
 	align-items: center;

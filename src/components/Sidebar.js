@@ -2,17 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { Logo as LogoSVG } from '../assets/svg'
-import { NavbarLogo } from '../GlobalStyle'
+import { NavbarLogo, HeaderSidebarMainStyles } from '../GlobalStyle'
 
 const Sidebar = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
+  ${HeaderSidebarMainStyles}
   width: ${({ theme }) => theme.sidebarWidth}px;
   height: 100%;
-	background: ${({ theme }) => theme.colors.primary};
-  z-index: 2;
-	box-shadow: 0 0 17px rgba(0,0,0,0.5);
 `;
 
 Sidebar.TopContainer = styled.div`
@@ -20,11 +15,7 @@ Sidebar.TopContainer = styled.div`
 	top: 15px;
 	left: 0;
 	width: 100%;
-`
-
-Sidebar.Logo = styled.div`
-  
-`
+`;
 
 Sidebar.Nav = styled.ul`
   padding: 0;
