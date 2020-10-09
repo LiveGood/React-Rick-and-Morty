@@ -36,6 +36,13 @@ export const HeaderSidebarMainStyles = css`
   z-index: 2;
 `;
 
+export const FlexCenter = css`
+  display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+`;
+
 export default createGlobalStyle`
   ${resetCSS}
 

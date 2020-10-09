@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import { Logo as LogoSVG } from 'assets/svg';
-import { NavbarLogo, HeaderSidebarMainStyles } from '../GlobalStyle'
+import { NavbarLogo, HeaderSidebarMainStyles, FlexCenter } from '../GlobalStyle'
+import { AnimatedRender } from './'
 
 const Header = styled.div`
   ${HeaderSidebarMainStyles}
+  ${FlexCenter}
 	width: 100%;
 	height: ${({ theme }) => theme.mobileMenuHeight}px;
-  display: flex;
-	align-content: center;
-	align-items: center;
-	justify-content: space-between;
 	padding: 0 ${({ theme }) => theme.bodyGutter.mobile}px;
 `;
 
@@ -72,9 +71,60 @@ Header.Toggle = styled.div`
   `}
 `;
 
+const NavOverlay = styled.div`
+  ${FlexCenter}
+  position: fixed;
+	top: ${({ theme }) => theme.mobileMenuHeight}px;
+	left: 0;
+	width: 100%;
+	height: ${({ theme }) => `calc(100vh - ${theme.mobileMenuHeight}px)`};
+	background: ${({ theme }) => theme.colors.primary};
+`;
+
+const NavContainer = styled.div`
+  width: 100%;
+`;
+
+const Nav = styled.ul`
+	margin: 20px 0 50px 0;
+	padding: 0;
+	width: 100%;
+`
+
+Nav.Item = styled.li`
+  margin: 0;
+	padding: 0;
+	border-bottom: 1px solid ${({ theme }) => theme.colors.divider};
+
+	&:first-child {
+		border-top: 1px solid ${({ theme }) => theme.colors.divider};
+	}
+
+  a {
+    ${FlexCenter}
+		color: ${({ theme }) => theme.colors.white};
+		text-transform: uppercase;
+		font-size: 20px;
+		text-align: center;
+		width: 100%;
+		padding: 20px 0;
+
+    &.active {
+			background: ${({ theme }) => theme.colors.sidebar.buttonBg};
+		}
+
+    svg {
+      fill: ${({ theme }) => theme.colors.white};
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+	  }
+  }
+`;
+
 export default ({ navItems })  => {
   const [isOpen, setIsOpen] = useState(false);
- 
+  
   return (
     <Header>
       <NavbarLogo size={40} to='/'>
@@ -86,6 +136,24 @@ export default ({ navItems })  => {
         <span></span>
         <span></span>
       </Header.Toggle>
+
+      <AnimatedRender in={isOpen}>
+        <NavOverlay >
+          <NavContainer>
+            <Nav>
+              {navItems.map(({ to, name, exact, icon: Icon }, index)=> (
+									<Nav.Item key={index}>
+										<NavLink {...{ to, exact }} onClick={()=> setIsOpen(false)}>
+											<Icon />
+											{name}
+										</NavLink>
+									</Nav.Item>
+								))
+              }
+            </Nav>
+          </NavContainer>
+        </NavOverlay>
+      </AnimatedRender>
     </Header>
   )
 }

@@ -28,6 +28,7 @@ export default {
         buttonBg: buttonBgLight
       },
       white: '#fff',
+      divider: '#e8e8e8',
     },
     ...baseTheme
   },
