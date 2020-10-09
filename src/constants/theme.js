@@ -1,6 +1,6 @@
 import { mediaQueries } from './'
 
-const baseTheme = {
+export const baseTheme = {
   transition: { default: '0.2 ease'},
   fonts: { default: '\'Lato\', Arial, sans-serif' },
   sidebarWidth: 80,
@@ -28,7 +28,8 @@ export default {
         buttonBg: buttonBgLight
       },
       logoBg: '#fff',
-    }
+    },
+    ...baseTheme
   },
   dark: {
     colors: {
@@ -37,5 +38,5 @@ export default {
         buttonBackground: buttonBgDark
       }
     }
-  }
+  },
 }

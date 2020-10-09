@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import BrowserHistory from './BrowserHistory'
 import { Router, Route } from 'react-router-dom'
 import styled, { ThemeProvider } from 'styled-components'
-import { theme } from './constants'
+import { theme, baseTheme } from './constants'
 import './index.css';
 import ResponsiveRender from './components/ResponsiveRender';
 
 import { Sidebar } from './components'
+import { MobileHeader } from './components'
 import { CharacterIcon, EpisodeIcon } from './assets/svg'
 import GlobalStyle from './GlobalStyle'
 
@@ -54,23 +55,18 @@ const ROUTES = [
 function App() {
   // TODO: add local storage latere
   const themeMode = 'light'
-
+  console.log(baseTheme);
   return (
-    <ThemeProvider theme={theme[themeMode]}>
+    <ThemeProvider theme={theme[themeMode]} base={baseTheme}>
       <AppElement>
         <Router history={BrowserHistory}>
             <ResponsiveRender>
-              <Sidebar {... {navItems: NAV_ITEMS}} />
+              {breakpoint => <>
+                {breakpoint.smUp && (<Sidebar {... {navItems: NAV_ITEMS}} />)}
+                {breakpoint.xsOnly && (<MobileHeader {... {navItems: NAV_ITEMS}} />)}
+              </>}
             </ResponsiveRender>
 
-
-          <Route path="/">
-            {ROUTES[0].component}
-          </Route>
-
-          <Route path="/characters">
-            {ROUTES[1].component}
-          </Route>
           {/* {ROUTES.map(({ path, component, ...restProps })=> {
             return (
               <Route

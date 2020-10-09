@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link, NavLink } from 'react-router-dom'
-
+import { NavLink } from 'react-router-dom'
 import { Logo as LogoSVG } from '../assets/svg'
+import { NavbarLogo } from '../GlobalStyle'
 
 const Sidebar = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 90px;
+  width: ${({ theme }) => theme.sidebarWidth}px;
   height: 100%;
 	background: ${({ theme }) => theme.colors.primary};
   z-index: 2;
@@ -22,17 +22,8 @@ Sidebar.TopContainer = styled.div`
 	width: 100%;
 `
 
-Sidebar.Logo = styled(Link)`
-  display: flex;
-  width: 55px;
-  height: 55px;
-  margin: 0 auto;
+Sidebar.Logo = styled.div`
   
-  svg {
-    fill: ${({ theme }) => theme.colors.logoBg};
-    width: 100%;
-    height: 100%;
-  }
 `
 
 Sidebar.Nav = styled.ul`
@@ -66,26 +57,13 @@ Sidebar.NavItem  = styled.li`
   }
 `;
 
-
 export default ({ navItems }) => {
-//   const checkActive = (match, location) => {
-//     //some additional logic to verify you are in the home URI
-//     console.log(`1`);
-//     console.log(match)
-//     console.log(`2`);
-//     console.log(location)
-//     if(!location) return false;
-//     const {pathname} = location;
-//     console.log(pathname);
-//     return pathname === "/";
-// }
-  
   return (
     <Sidebar>
       <Sidebar.TopContainer>
-        <Sidebar.Logo to='/'>
+        <NavbarLogo size={55} to='/'>
             <LogoSVG />
-        </Sidebar.Logo>
+        </NavbarLogo>
         
         <Sidebar.Nav>
           {navItems.map(({ to, name, exact, icon: Icon }) => (

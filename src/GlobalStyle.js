@@ -1,14 +1,32 @@
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import resetCSS from 'styled-reset'
 import { breakpoints } from './constants'
 import { setConfiguration } from 'react-grid-system'
 import { css } from "styled-components"
+import { Link } from 'react-router-dom'
 
 //Set grid custom breakpoints
 setConfiguration({
   breakpoints: Object.keys(breakpoints).map(key => breakpoints[key]),
   gutterWidth: 20,
 })
+
+// Reusable styles
+
+export const NavbarLogo = styled(Link)`
+  display: flex;
+  width: ${props => `${props.size}px`};
+  height: ${props => `${props.size}px`};
+  margin: 0 auto;
+  align-items: center;
+	justify-content: space-between;
+  
+  svg {
+    fill: ${({ theme }) => theme.colors.logoBg};
+    width: 100%;
+    height: 100%;
+  }
+`;
 
 export default createGlobalStyle`
   ${resetCSS}
