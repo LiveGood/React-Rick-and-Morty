@@ -8,7 +8,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "graphql": "^15.3.0",
-    "history": "^5.0.0",
+    "history": "^4.10.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-grid-system": "^7.1.1",
@@ -19,9 +19,10 @@
     "styled-reset": "^4.2.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "stats": "react-app-rewired build && source-map-explorer 'build/static/js/*.js' --html bundle.html && source-map-explorer 'build/static/js/*.js' --json bundle.json && sloc ./src > stats.txt && find ./src -type f -name '*.js' -printf '%s\t%p\n' | sort -nr >> stats.txt",
+    "start": "react-app-rewired start",
+    "build": "REACT_APP_API=https://rickandmortyapi.com/graphql COMMIT_SHORT_SHA=$(git rev-parse HEAD | head -c 8) GENERATE_SOURCEMAP=false react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -38,5 +39,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-plugin-lodash": "^3.3.4",
+    "customize-cra": "^1.0.0",
+    "lodash-webpack-plugin": "^0.11.5",
+    "react-app-rewired": "^2.1.6",
+    "sloc": "^0.2.1",
+    "source-map-explorer": "^2.5.0"
   }
 }
