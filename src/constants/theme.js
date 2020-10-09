@@ -25,10 +25,9 @@ export default {
     colors: {
       primary: primaryLight,
       sidebar: {
-        buttonBackground: buttonBgLight
+        buttonBg: buttonBgLight
       },
       logoBg: '#fff',
-      
     }
   },
   dark: {

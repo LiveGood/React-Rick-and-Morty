@@ -23,6 +23,4 @@ const mediaQueries =  {
   xlUp: `(min-width: ${breakpoints.xl}px)`,
 }
 
-console.log(mediaQueries);
-
 export default mediaQueries

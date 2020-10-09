@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link, NavLink } from 'react-router-dom'
+
 import { Logo as LogoSVG } from '../assets/svg'
 
 const Sidebar = styled.div`
@@ -23,8 +24,8 @@ Sidebar.TopContainer = styled.div`
 
 Sidebar.Logo = styled(Link)`
   display: flex;
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
   margin: 0 auto;
   
   svg {
@@ -34,13 +35,69 @@ Sidebar.Logo = styled(Link)`
   }
 `
 
-export default () => {
+Sidebar.Nav = styled.ul`
+  padding: 0;
+  margin: 22px 0 0 0;
+  list-style: none;
+`;
+
+Sidebar.NavItem  = styled.li`
+  a {
+    color: ${({ theme }) => theme.colors.logoBg};
+    text-transform: uppercase;
+		font-size: 11px;
+		text-align: center;
+		display: block;
+		width: 100%;
+		padding: 15px 0;
+    text-decoration: none;
+    
+    &.active {
+      background: ${({ theme }) => theme.colors.sidebar.buttonBg};
+    }
+  }
+
+  svg {
+    fill: ${({ theme }) => theme.colors.logoBg};
+    width: 26px;
+    height: 26px;
+    display: block;
+		margin: 0 auto 8px auto;
+  }
+`;
+
+
+export default ({ navItems }) => {
+//   const checkActive = (match, location) => {
+//     //some additional logic to verify you are in the home URI
+//     console.log(`1`);
+//     console.log(match)
+//     console.log(`2`);
+//     console.log(location)
+//     if(!location) return false;
+//     const {pathname} = location;
+//     console.log(pathname);
+//     return pathname === "/";
+// }
+  
   return (
     <Sidebar>
       <Sidebar.TopContainer>
         <Sidebar.Logo to='/'>
             <LogoSVG />
         </Sidebar.Logo>
+        
+        <Sidebar.Nav>
+          {navItems.map(({ to, name, exact, icon: Icon }) => (
+            <Sidebar.NavItem key={`sidebar-nav-item-${name}`}>
+            <NavLink  to={to} exact={exact}>
+
+              <Icon />
+              {name}
+            </NavLink>
+          </Sidebar.NavItem>
+          ))}
+        </Sidebar.Nav>
       </Sidebar.TopContainer>
     </Sidebar>
   )

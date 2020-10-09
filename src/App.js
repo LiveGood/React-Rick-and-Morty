@@ -7,7 +7,6 @@ import './index.css';
 import ResponsiveRender from './components/ResponsiveRender';
 
 import { Sidebar } from './components'
-// import { CharactersList, EpisodesList, CharacterSingle } from './containers'
 import { CharacterIcon, EpisodeIcon } from './assets/svg'
 import GlobalStyle from './GlobalStyle'
 
@@ -39,18 +38,15 @@ const NAV_ITEMS = [
 const ROUTES = [
   {
     path: '/',
-    // component: EpisodesList,
     component: () => { return <div>Episodes</div> },
   },
   {
     path: '/characters',
-    // component: CharactersList,
     component: () => { return <div>Characters</div> },
 
   },
   {
     path: '/characters/:id',
-    // component: CharacterSingle,
     component: () => { return <div>Single Character</div> },
   }
 ]
