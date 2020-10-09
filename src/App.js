@@ -79,7 +79,7 @@ function App() {
           })} */}
         </Router>
       </AppElement>
-      {/* <GlobalStyle /> */}
+      <GlobalStyle />
     </ThemeProvider>
   );
 }

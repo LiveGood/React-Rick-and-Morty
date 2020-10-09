@@ -25,7 +25,7 @@ Sidebar.Nav = styled.ul`
 
 Sidebar.NavItem  = styled.li`
   a {
-    color: ${({ theme }) => theme.colors.logoBg};
+    color: ${({ theme }) => theme.colors.white};
     text-transform: uppercase;
 		font-size: 11px;
 		text-align: center;
@@ -40,7 +40,7 @@ Sidebar.NavItem  = styled.li`
   }
 
   svg {
-    fill: ${({ theme }) => theme.colors.logoBg};
+    fill: ${({ theme }) => theme.colors.white};
     width: 26px;
     height: 26px;
     display: block;

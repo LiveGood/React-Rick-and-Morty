@@ -1,7 +1,7 @@
 import { mediaQueries } from './'
 
 export const baseTheme = {
-  transition: { default: '0.2 ease'},
+  transition: { default: '0.8s ease'},
   fonts: { default: '\'Lato\', Arial, sans-serif' },
   sidebarWidth: 80,
   mobileMenuHeight: 60,
@@ -27,7 +27,7 @@ export default {
       sidebar: {
         buttonBg: buttonBgLight
       },
-      logoBg: '#fff',
+      white: '#fff',
     },
     ...baseTheme
   },
