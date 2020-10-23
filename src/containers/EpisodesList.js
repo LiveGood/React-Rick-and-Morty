@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 import { Row, Col } from 'react-grid-system';
 
 import episodesQuery from '../queries/Episodes'
+import EpisodeItem from '../components/EpisodeItem'
 import { Select, Input } from '../components/common/'
 
 const PageHead = styled.div`
@@ -60,7 +61,9 @@ const Filter = function({ filters, setFilters }) {
 
 export default () => {
   const [getEpisodes, { data, loading }] = episodesQuery()
+  const {resuls: episodes, info} = data?.episodes ?? {};
   const [filters, setFilters] = useState(null);
+  const hasItems = Boolean(episodes?.length);
 
   useEffect(()=> {
     getEpisodes()
@@ -75,6 +78,16 @@ export default () => {
   return (
     <div>
       <Filter {... {filters, setFilters}} />
+
+      {!loading && hasItems && (
+        <Row>
+          {episodes?.map(({ id, episodeID, name, air_date, episode, characters }) => (
+            <Col key={`episode-${id}-${name}`} xs={12} sm={6} lg={3} style={{ marginBottom: 20 }}>
+              <EpisodeItem {...{ episodeID, name, air_date, episode, characters }}/>
+            </Col>
+          ))}
+        </Row>
+      )}
     </div>
   )
 }
