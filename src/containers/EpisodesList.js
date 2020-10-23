@@ -27,20 +27,22 @@ const Filter = function({ filters, setFilters }) {
   const [getEpisodes, { data }] = episodesQuery();
   const { results: episodes } = data?.episodes ?? []
 
-  useEffect(()=> {
+  useEffect(() => {
     getEpisodes()
   }, [getEpisodes])
 
   return (
-    <PageHead>
+    <PageHead>  
       <PageHead.Filter>
         <Row>
           <Col>
             <Select
-              label="episode"
-              placeholder="selectEpisode"
+              label="Episode"
+              placeholder="Select Episode"
               value={filters?.episode}
-              
+              options={episodes?.map(({ episode })=> {
+                return { name: episode, value: episode }
+              })}
             />
           </Col>
           <Col></Col>
@@ -51,9 +53,24 @@ const Filter = function({ filters, setFilters }) {
 }
 
 export default () => {
+  const [getEpisodes, { data, loading }] = episodesQuery()
+  const [filters, setFilters] = useState(null);
+
+  useEffect(()=> {
+    console.log('1 -> EpisodeList Useffect')
+    getEpisodes()
+  }, [getEpisodes])
+
+  useEffect(()=> {
+    console.log('2 -> EpisodeList Useffect')
+    if(filters) {
+      getEpisodes({ variables: { filter: filters } })
+    }
+  }, [filters, getEpisodes])
+
   return (
     <div>
-      <Filter />
+      <Filter {... {filters, setFilters}} />
     </div>
   )
 }

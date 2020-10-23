@@ -29,7 +29,12 @@ export default {
       },
       white: '#fff',
       divider: '#e8e8e8',
-      text: '#6f6f6f'
+      text: '#6f6f6f',
+      field: {
+        color: '#6f6f6f',
+        background: '#fff',
+        borderColor: '#e6e6e6',
+      }
     },
     ...baseTheme
   },
