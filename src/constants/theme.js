@@ -34,7 +34,12 @@ export default {
         color: '#6f6f6f',
         background: '#fff',
         borderColor: '#e6e6e6',
-      }
+      },
+      label: {
+        background: '#e6e6e6',
+        color: '#757575',
+      },
+      title: '#6b6b6b',
     },
     ...baseTheme
   },

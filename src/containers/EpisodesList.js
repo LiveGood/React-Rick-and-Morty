@@ -61,7 +61,7 @@ const Filter = function({ filters, setFilters }) {
 
 export default () => {
   const [getEpisodes, { data, loading }] = episodesQuery()
-  const {resuls: episodes, info} = data?.episodes ?? {};
+  const {results: episodes, info} = data?.episodes ?? {};
   const [filters, setFilters] = useState(null);
   const hasItems = Boolean(episodes?.length);
 
@@ -78,7 +78,7 @@ export default () => {
   return (
     <div>
       <Filter {... {filters, setFilters}} />
-
+      {console.log(!loading && hasItems)}
       {!loading && hasItems && (
         <Row>
           {episodes?.map(({ id, episodeID, name, air_date, episode, characters }) => (
