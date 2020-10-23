@@ -39,6 +39,10 @@ export default {
         background: '#e6e6e6',
         color: '#757575',
       },
+      chip: {
+        background: primaryLight,
+        color: '#fff',
+      },
       title: '#6b6b6b',
     },
     ...baseTheme

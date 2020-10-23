@@ -35,13 +35,48 @@ Item.Episode = styled.div`
   color: ${({ theme }) => theme.colors.label.color};
 `;
 
+Item.Date = styled.span`
+	color: ${({ theme })=> theme.colors.text};
+  font-size: 14px;
+  display: block;  
+`;
+
+Item.Characters = styled.div`
+  position: relative;
+  margin-top: 20px;
+`;
+
+Item.Character = styled.div`
+  margin-right: 8px;
+  margin-bottom: 8px;
+  display: inline-block;
+  padding: 5px 10px;
+  background: ${({ theme }) => theme.colors.chip.background};
+  color: ${({ theme }) => theme.colors.chip.color};
+  font-size: 12px;
+	cursor: pointer;
+	border-radius: 30px;
+`;
+
 export default ({ episodeID, name, air_date, episode, characters }) => {
   return (
     <Item>
       <Item.Head>
         <Item.Title>{name}</Item.Title>
-        <Item.Episode>{episode}</Item.Episode>
+        <div><Item.Episode>{episode}</Item.Episode></div>
       </Item.Head>
+
+      <Item.Date>{air_date}</Item.Date>
+      <Item.Characters>
+        {characters.map(({ id: characterId, name }, index) => (
+          <Item.Character 
+            key={`${name}-${index}`}
+            // TODO: add onClick to go to new page for characters
+          >
+            {name}
+          </Item.Character>
+        ))}
+      </Item.Characters>
     </Item>
   )
 }
