@@ -6,7 +6,6 @@ import * as serviceWorker from './serviceWorker';
 
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 
-console.log(process.env.REACT_APP_API)
 const client = new ApolloClient({
   uri: process.env.REACT_APP_API,
   cache: new InMemoryCache()

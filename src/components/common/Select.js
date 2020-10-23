@@ -34,20 +34,22 @@ const SelectComponent = ({ label, placeholder, options, ...restProps }) => {
   
   return (
     <div>
-      {label && (
-        <Label>{label}</Label>
-      )}
-      <Select>
-        {placeholder && (
-          <option  value=''disabled selected >{placeholder}</option>
-        )}
+      <Label>{label}</Label>
+      <Select defaultValue={'default'}>
+        <option value='default' disabled>{placeholder}</option>
         <option value=''>none</option>
-        {options && options.map(({ value, name }) => (
+        {options.map(({ value, name }) => (
           <option key={`${value}-${name}`} value={value}>{name}</option>
         ))}
       </Select>
     </div>
   )
+}
+
+SelectComponent.defaultProps = {
+  label: '',
+  placeholder: '',
+  options: [],
 }
 
 export default SelectComponent;

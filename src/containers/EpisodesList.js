@@ -40,9 +40,9 @@ const Filter = function({ filters, setFilters }) {
               label="Episode"
               placeholder="Select Episode"
               value={filters?.episode}
-              options={episodes?.map(({ episode })=> {
-                return { name: episode, value: episode }
-              })}
+              options={episodes?.map(({ episode })=> 
+                ({ name: episode, value: episode })
+              )}
             />
           </Col>
           <Col></Col>
@@ -57,12 +57,10 @@ export default () => {
   const [filters, setFilters] = useState(null);
 
   useEffect(()=> {
-    console.log('1 -> EpisodeList Useffect')
     getEpisodes()
   }, [getEpisodes])
 
   useEffect(()=> {
-    console.log('2 -> EpisodeList Useffect')
     if(filters) {
       getEpisodes({ variables: { filter: filters } })
     }
