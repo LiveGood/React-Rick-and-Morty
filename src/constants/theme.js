@@ -29,6 +29,7 @@ export default {
       },
       white: '#fff',
       divider: '#e8e8e8',
+      text: '#6f6f6f'
     },
     ...baseTheme
   },
