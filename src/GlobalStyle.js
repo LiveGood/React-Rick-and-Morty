@@ -27,6 +27,15 @@ export const NavbarLogo = styled(Link)`
   }
 `;
 
+export const FilterLabel = styled.label`
+  margin-bottom: 8px;
+  padding: 0 5px;
+  color: ${({ theme })=> theme.colors.text};
+  text-transform: uppercase;
+  font-size: 12px;
+  display: block;
+`;
+
 export const HeaderSidebarMainStyles = css`
   position: fixed;
 	top: 0;
@@ -34,6 +43,26 @@ export const HeaderSidebarMainStyles = css`
 	background: ${({ theme }) => theme.colors.primary};
 	box-shadow: 0 0 17px rgba(0,0,0,0.5);
   z-index: 2;
+`;
+
+export const FilterInput = css`
+  overflow: hidden;
+  border-style: solid;
+  display: block;
+  width: 100%;
+  font-size: 16px;
+  background: ${({ theme })=> theme.colors.field.background};
+  color: ${({ theme })=> theme.colors.field.color};
+  border: 1px solid ${({ theme })=> theme.colors.field.borderColor};
+  height: 45px;
+  padding: 0 15px;
+  border-radius: 3px;
+  -webkit-appearance: none;
+
+  &:focus,
+  &:active  {
+    outline: none;
+  }
 `;
 
 export const FlexCenter = css`

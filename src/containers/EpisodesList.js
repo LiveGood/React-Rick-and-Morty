@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { Row, Col } from 'react-grid-system';
 
 import episodesQuery from '../queries/Episodes'
-import { Select } from '../components/common/'
+import { Select, Input } from '../components/common/'
 
 const PageHead = styled.div`
 	margin-bottom: 30px;
@@ -22,7 +22,6 @@ PageHead.Filter = styled.div`
   `}
 `;
 
-
 const Filter = function({ filters, setFilters }) {
   const [getEpisodes, { data }] = episodesQuery();
   const { results: episodes } = data?.episodes ?? []
@@ -36,6 +35,14 @@ const Filter = function({ filters, setFilters }) {
       <PageHead.Filter>
         <Row>
           <Col>
+            <Input 
+              name="name"
+              label="name"
+              placeHolder='Filter By name'
+              defaultValue={filters?.name}
+            />
+          </Col>
+          <Col>
             <Select
               label="Episode"
               placeholder="Select Episode"
@@ -45,7 +52,6 @@ const Filter = function({ filters, setFilters }) {
               )}
             />
           </Col>
-          <Col></Col>
         </Row>
       </PageHead.Filter>
     </PageHead>
