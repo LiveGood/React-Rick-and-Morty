@@ -10,6 +10,7 @@ import { Sidebar } from './components'
 import { MobileHeader } from './components'
 import { CharacterIcon, EpisodeIcon } from './assets/svg'
 import GlobalStyle from './GlobalStyle'
+import EpisodesList from './containers/EpisodesList'
 
 const AppElement = styled.div`
   position: relative;
@@ -39,7 +40,7 @@ const NAV_ITEMS = [
 const ROUTES = [
   {
     path: '/',
-    component: () => { return <div>Episodes</div> },
+    component: EpisodesList,
   },
   {
     path: '/characters',
@@ -67,7 +68,7 @@ function App() {
               </>}
             </ResponsiveRender>
 
-          {/* {ROUTES.map(({ path, component, ...restProps })=> {
+          {ROUTES.map(({ path, component, ...restProps })=> {
             return (
               <Route
                 key={`route-${path}`}
@@ -76,7 +77,7 @@ function App() {
                 {...restProps}
               />
             )
-          })} */}
+          })}
         </Router>
       </AppElement>
       <GlobalStyle />
