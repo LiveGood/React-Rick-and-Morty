@@ -4,9 +4,12 @@ import styled, { css } from 'styled-components';
 import { Row, Col } from 'react-grid-system';
 import { debounce } from 'lodash';
 
+
+import usePagination from '../components/hooks'
 import episodesQuery from '../queries/Episodes'
 import EpisodeItem from '../components/EpisodeItem'
 import NotFoundItem from '../components/NotFoundItem'
+import Pagination from '../components/Pagination'
 import { Select, Input } from '../components/common/'
 
 const PageHead = styled.div`
@@ -103,6 +106,14 @@ export default () => {
           ))}
         </Row>
       )}
+
+      {hasItems && (
+        <Pagination 
+
+        />
+      )
+
+      }
 
       {!loading && !hasItems && (
         <NotFoundItem/>
