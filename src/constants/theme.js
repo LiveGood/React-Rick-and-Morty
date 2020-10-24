@@ -44,6 +44,12 @@ export default {
         background: primaryLight,
         color: '#fff',
       },
+      pagination: {
+        background: '#fff',
+        color: '#6b6b6b',
+        activeBackground: primaryLight,
+        activeColor: '#fff'
+      },
       title: '#6b6b6b',
     },
     ...baseTheme
