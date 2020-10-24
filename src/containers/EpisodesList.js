@@ -78,7 +78,6 @@ export default () => {
   return (
     <div>
       <Filter {... {filters, setFilters}} />
-      {console.log(!loading && hasItems)}
       {!loading && hasItems && (
         <Row>
           {episodes?.map(({ id, episodeID, name, air_date, episode, characters }) => (

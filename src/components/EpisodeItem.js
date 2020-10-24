@@ -1,12 +1,24 @@
+import { theme } from 'constants';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { ArrowIcon } from '../assets/svg'
 
+// TODO: Slidedown
+// TODO: Add Translation
+// TODO: Add page change to Character page
+// TODO: 
 const Item = styled.div`
   background: ${({ theme }) => theme.colors.white};
   box-shadow: 0 0 11px -5px rgba(0,0,0,0.3);
   border-radius: 5px;
 	padding: 20px 20px 15px 20px;
 	height: 100%;
+`;
+
+Item.Collapse = styled.div`
+  max-height: ${({ isOpen }) => isOpen ? '1000px' : '60px' };
+  overflow: hidden;
+  transition: max-height 500ms;
 `;
 
 Item.Head = styled.div`
@@ -58,7 +70,30 @@ Item.Character = styled.div`
 	border-radius: 30px;
 `;
 
+Item.ExpandButton = styled.div`
+  color: ${({ theme }) => theme.colors.text};
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  cursor: pointer;
+
+  svg {
+    width: 12px;
+    height: 12px;
+    display: block;
+    margin-left: 8px;
+    fill: ${({ theme }) => theme.colors.text};
+    transition: transform ${({ theme }) => theme.transition.default};
+    transform: ${({ isOpen }) => isOpen ? 'rotate(0deg)' : 'rotate(180deg)'};
+  }
+`;
+
 export default ({ episodeID, name, air_date, episode, characters }) => {
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
     <Item>
       <Item.Head>
@@ -67,16 +102,26 @@ export default ({ episodeID, name, air_date, episode, characters }) => {
       </Item.Head>
 
       <Item.Date>{air_date}</Item.Date>
+      
       <Item.Characters>
+       <Item.Collapse {...{ isOpen}}>
         {characters.map(({ id: characterId, name }, index) => (
-          <Item.Character 
-            key={`${name}-${index}`}
-            // TODO: add onClick to go to new page for characters
-          >
-            {name}
-          </Item.Character>
-        ))}
+            <Item.Character 
+              key={`${name}-${index}`}
+              // TODO: add onClick to go to new page for characters
+            >
+              {name}
+            </Item.Character>
+          ))}
+       </Item.Collapse>
       </Item.Characters>
+
+      <div>
+        <Item.ExpandButton {...{isOpen}} s onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? 'shrink' : 'expand'}
+          <ArrowIcon />
+        </Item.ExpandButton>
+      </div>
     </Item>
   )
 }
