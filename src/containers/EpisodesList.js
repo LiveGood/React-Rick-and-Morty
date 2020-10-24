@@ -5,7 +5,7 @@ import { Row, Col } from 'react-grid-system';
 import { debounce } from 'lodash';
 
 
-import usePagination from '../components/hooks'
+import { usePagination } from '../components/hooks'
 import episodesQuery from '../queries/Episodes'
 import EpisodeItem from '../components/EpisodeItem'
 import NotFoundItem from '../components/NotFoundItem'
@@ -81,6 +81,8 @@ const Filter = function({ filters, setFilters }) {
 export default () => {
   const [getEpisodes, { data, loading }] = episodesQuery()
   const {results: episodes, info} = data?.episodes ?? {};
+  const {pages, next, prev} = info ?? {};
+  const selectedPage = usePagination({ next, prev })
   const [filters, setFilters] = useState(null);
   const hasItems = Boolean(episodes?.length);
 
@@ -109,7 +111,9 @@ export default () => {
 
       {hasItems && (
         <Pagination 
-
+          pages={pages}
+          currentPage={selectedPage}
+          onChange={(page) => getEpisodes({ variables: {page} })}
         />
       )
 
