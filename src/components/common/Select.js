@@ -10,7 +10,7 @@ const SelectComponent = ({ label, placeholder, options, ...restProps }) => {
   return (
     <div>
       <FilterLabel>{label}</FilterLabel>
-      <Select defaultValue={'default'}>
+      <Select {...restProps}>
         <option value='default' disabled>{placeholder}</option>
         <option value=''>none</option>
         {options.map(({ value, name }) => (

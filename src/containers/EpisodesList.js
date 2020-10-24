@@ -41,9 +41,6 @@ const Filter = function({ filters, setFilters }) {
   }, [filters, getEpisodes])
 
   const changeInputFilter = debounce(({ target }) => {
-    console.log('setting Filters');
-		console.log({ name: target.value })
-    
     setFilters({ name: target.value })
   }, 600)
 
@@ -55,7 +52,7 @@ const Filter = function({ filters, setFilters }) {
             <Input 
               name="name"
               label="name"
-              placeHolder='Filter By name'
+              placeholder='Filter by name'
               defaultValue={filters?.name}
               onChange={ev => {
                 ev.persist();
@@ -66,14 +63,11 @@ const Filter = function({ filters, setFilters }) {
           <Col>
             <Select
               label="Episode"
-              placeholder="Select Episode"
+              placeholder="Select episode"
               value={filters?.episode}
-              onChange={ev => {
-                setFilters({ ...filters, episode: ev.target.value })
-              }}
-              options={episodes?.map(({ episode })=> 
-                ({ name: episode, value: episode })
-              )}
+              defaultValue={'default'}
+              options={episodes?.map(({ episode }) => ({ name: episode, value: episode }))}
+              onChange={ev => setFilters({ episode: ev.target.value })}
             />
           </Col>
         </Row>
