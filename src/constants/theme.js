@@ -9,6 +9,7 @@ export const baseTheme = {
     desktop: 30,
     mobile: 15,
   },
+  materialShadow: '0 0 11px -5px rgba(0,0,0,0.3)',
   mediaQueries,
 }
 

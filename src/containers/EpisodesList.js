@@ -6,14 +6,13 @@ import { debounce } from 'lodash';
 
 import episodesQuery from '../queries/Episodes'
 import EpisodeItem from '../components/EpisodeItem'
+import NotFoundItem from '../components/NotFoundItem'
 import { Select, Input } from '../components/common/'
-
-// TODO: Make the filteres work.
 
 const PageHead = styled.div`
 	margin-bottom: 30px;
 `
-
+// TODO: Add Translation
 PageHead.Filter = styled.div`
   ${({ theme }) => css`
     @media ${theme.mediaQueries.xsOnly} {
@@ -103,6 +102,10 @@ export default () => {
             </Col>
           ))}
         </Row>
+      )}
+
+      {!loading && !hasItems && (
+        <NotFoundItem/>
       )}
     </div>
   )
