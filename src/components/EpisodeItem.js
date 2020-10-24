@@ -3,10 +3,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ArrowIcon } from '../assets/svg'
 
-// TODO: Slidedown
 // TODO: Add Translation
 // TODO: Add page change to Character page
-// TODO: 
 const Item = styled.div`
   background: ${({ theme }) => theme.colors.white};
   box-shadow: 0 0 11px -5px rgba(0,0,0,0.3);
@@ -102,7 +100,7 @@ export default ({ episodeID, name, air_date, episode, characters }) => {
       </Item.Head>
 
       <Item.Date>{air_date}</Item.Date>
-      
+
       <Item.Characters>
        <Item.Collapse {...{ isOpen}}>
         {characters.map(({ id: characterId, name }, index) => (

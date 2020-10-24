@@ -1,11 +1,14 @@
 import { Concast } from '@apollo/client/utilities';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Row, Col } from 'react-grid-system';
+import { debounce } from 'lodash';
 
 import episodesQuery from '../queries/Episodes'
 import EpisodeItem from '../components/EpisodeItem'
 import { Select, Input } from '../components/common/'
+
+// TODO: Make the filteres work.
 
 const PageHead = styled.div`
 	margin-bottom: 30px;
@@ -25,11 +28,24 @@ PageHead.Filter = styled.div`
 
 const Filter = function({ filters, setFilters }) {
   const [getEpisodes, { data }] = episodesQuery();
-  const { results: episodes } = data?.episodes ?? []
+  const { results: episodes } = data?.episodes ?? [];
 
   useEffect(() => {
     getEpisodes()
   }, [getEpisodes])
+
+  useEffect(() => {
+    if (filters) {
+      getEpisodes({ vriables: {filter: filters} })
+    }
+  }, [filters, getEpisodes])
+
+  const changeInputFilter = debounce(({ target }) => {
+    console.log('setting Filters');
+		console.log({ name: target.value })
+    
+    setFilters({ name: target.value })
+  }, 600)
 
   return (
     <PageHead>  
@@ -41,6 +57,10 @@ const Filter = function({ filters, setFilters }) {
               label="name"
               placeHolder='Filter By name'
               defaultValue={filters?.name}
+              onChange={ev => {
+                ev.persist();
+                changeInputFilter(ev);
+              }}
             />
           </Col>
           <Col>
@@ -48,6 +68,9 @@ const Filter = function({ filters, setFilters }) {
               label="Episode"
               placeholder="Select Episode"
               value={filters?.episode}
+              onChange={ev => {
+                setFilters({ ...filters, episode: ev.target.value })
+              }}
               options={episodes?.map(({ episode })=> 
                 ({ name: episode, value: episode })
               )}
