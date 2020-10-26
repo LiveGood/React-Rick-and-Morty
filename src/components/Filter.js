@@ -13,6 +13,10 @@ PageHead.Filter = styled.div`
     @media ${theme.mediaQueries.xsOnly} {
       width: 100%;
     }
+
+    @media ${theme.mediaQueries.smUp} {
+			width: 50%;
+		}
   `}
 `;
 
@@ -37,16 +41,19 @@ const InputFilter = ({ context }) => {
 }
 
 const SelectFilter = ({ context }) => {
-  const {items, propName, filters, setFilters, selectValues} = useContext(context)
-
+  const {items, propNameSingle, propNamePlural, filters, setFilters, selectValues} = useContext(context)
+  
   return (
     <Select
       label={selectValues.label} 
       placeholder={selectValues.placeholder}
-      value={filters && filters[propName]}
+      value={filters && filters[propNamePlural]}
       defaultValue={'default'}
-      options={items?.map((item) => ({ name: item[propName], value: item[propName] }))}
-      onChange={ev => setFilters({ [propName]: ev.target.value })}
+      onChange={ev => setFilters({ [propNamePlural]: ev.target.value })}
+      options={items?.map((item) => {
+        console.log();
+        return { name: item[propNameSingle], value: item[propNameSingle] }
+      })}
     />
   )
 }

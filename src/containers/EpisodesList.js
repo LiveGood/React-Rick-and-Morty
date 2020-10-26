@@ -21,7 +21,8 @@ export default () => {
   const selectedPage = usePagination({ next, prev })
   const [filters, setFilters] = useState(null);
   const hasItems = Boolean(episodes?.length);
-  const propName = 'episodes';
+  const propNamePlural = 'episodes';
+  const propNameSingle = 'episode'
 
   useEffect(()=> {
     getEpisodes()
@@ -38,7 +39,8 @@ export default () => {
       <FilterContext.Provider value={{
         items: episodes, 
         queryCall: episodesQuery, 
-        propName, 
+        propNamePlural, 
+        propNameSingle,
         filters, 
         setFilters, 
         showSelect: true,
@@ -75,7 +77,7 @@ export default () => {
       )}
 
       {!loading && !hasItems && (
-        <NotFoundItem {...{ propName }}/>
+        <NotFoundItem propName={propNamePlural} />
       )}
     </div>
   )

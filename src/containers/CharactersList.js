@@ -16,7 +16,7 @@ export default() => {
   const selectedPage = usePagination({ next, prev });
   const [filters, setFilters] = useState(null);
   const hasItems = Boolean(characters?.length);
-  const propName = 'characters';
+  const propNamePlural = 'characters';
 
   useEffect(() => {
     getCharacters();
@@ -33,7 +33,7 @@ export default() => {
       <FilterContext.Provider value={{
         items: characters, 
         queryCall: charactersQuery, 
-        propName,
+        propNamePlural,
         filters, 
         setFilters, 
         inputValues: {
@@ -66,7 +66,7 @@ export default() => {
 			)}
 
       {!loading && !hasItems && (
-        <NotFoundItem {...{ propName }}/>
+        <NotFoundItem propName={propNamePlural} />
       )}
     </div>
   )

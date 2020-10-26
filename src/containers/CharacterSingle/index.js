@@ -8,7 +8,7 @@ import { InfoIcon, EpisodeIcon, PlanetIcon, ExploreIcon } from 'assets/svg';
 const Avatar = styled.div`
   overflow: hidden;
   border-radius: 100%;
-  margin: 0 auto 30px auto;
+  margin: 10px auto 30px auto;
 
   img {
     width: 100%;
