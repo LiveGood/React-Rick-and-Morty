@@ -11,6 +11,7 @@ import { MobileHeader } from './components'
 import { CharacterIcon, EpisodeIcon } from './assets/svg'
 import GlobalStyle from './GlobalStyle'
 import EpisodesList from './containers/EpisodesList'
+import CharactersList from './containers/CharactersList'
 
 const AppElement = styled.div`
   position: relative;
@@ -44,7 +45,7 @@ const ROUTES = [
   },
   {
     path: '/characters',
-    component: () => { return <div>Characters</div> },
+    component: CharactersList,
 
   },
   {

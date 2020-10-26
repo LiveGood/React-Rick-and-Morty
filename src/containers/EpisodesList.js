@@ -5,8 +5,8 @@ import { Row, Col } from 'react-grid-system';
 import { debounce } from 'lodash';
 
 
-import { usePagination } from '../components/hooks'
-import episodesQuery from '../queries/Episodes'
+import { usePagination } from '../hooks'
+import { episodesQuery } from '../queries'
 import EpisodeItem from '../components/EpisodeItem'
 import NotFoundItem from '../components/NotFoundItem'
 import { Select, Input } from '../components/common/'
