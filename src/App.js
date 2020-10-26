@@ -12,6 +12,7 @@ import { CharacterIcon, EpisodeIcon } from './assets/svg'
 import GlobalStyle from './GlobalStyle'
 import EpisodesList from './containers/EpisodesList'
 import CharactersList from './containers/CharactersList'
+import CharacterSingle from './containers/CharacterSingle'
 
 const AppElement = styled.div`
   position: relative;
@@ -50,7 +51,7 @@ const ROUTES = [
   },
   {
     path: '/characters/:id',
-    component: () => { return <div>Single Character</div> },
+    component: CharacterSingle,
   }
 ]
 

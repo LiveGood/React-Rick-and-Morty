@@ -1,16 +1,15 @@
 import React, { useEffect, useState, createContext } from 'react';
 import { Row, Col } from 'react-grid-system';
 
-import { usePagination } from '../hooks'
-import { episodesQuery } from '../queries'
 import EpisodeItem from '../components/EpisodeItem'
-import NotFoundItem from '../components/NotFoundItem'
 import Pagination from '../components/Pagination'
 import Filter from '../components/Filter'
+import NotFoundItem from '../components/NotFoundItem'
+import { usePagination } from '../hooks'
+import { episodesQuery } from '../queries'
 
 // Bit components: trial
-// import Pagination from '../components/Pagination'
-// TOO: try another time
+// TODO: try another time
 // import Pagination from '@bit/livegood.basic-react-components.pagination';
 // TODO: Add Translation
 
@@ -57,9 +56,10 @@ export default () => {
       {!loading && hasItems && (
         <Row>
           {episodes?.map(({ id, episodeID, name, air_date, episode, characters }) => (
-            <Col key={`episode-${id}-${name}`} 
-              xs={12} sm={6} lg={3} 
-              style={{ marginBottom: 20 }}>
+            <Col key={`episodes-${id}-${name}`} 
+              style={{ marginBottom: 20 }}
+              xs={12} sm={6} md={6} lg={3}
+            > 
               <EpisodeItem {...{ episodeID, name, air_date, episode, characters }}/>
             </Col>
           ))}

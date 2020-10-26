@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 const Item = styled.div`
   background: ${({ theme }) => theme.colors.card};
@@ -50,9 +51,10 @@ Item.Status = styled.span`
 `;
 
 export default ({ id, name, image, gender, status }) => {
+  let history = useHistory();
 
   return (
-    <Item>
+    <Item onClick={() => history.push(`/characters/${id}`)}>
       <Item.Image>
         <img src={image} alt={name} />
       </Item.Image>

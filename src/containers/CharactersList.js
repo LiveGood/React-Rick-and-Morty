@@ -2,13 +2,12 @@ import React, { createContext, useEffect, useState } from 'react';
 import { Row, Col } from 'react-grid-system';
 
 import CharacterItem from 'components/CharacterItem';
-import {usePagination} from '../hooks'
 import Pagination from '../components/Pagination'
-import { charactersQuery } from '../queries';
 import Filter from '../components/Filter'
 import NotFoundItem from 'components/NotFoundItem';
+import {usePagination} from '../hooks'
+import { charactersQuery } from '../queries';
 
-// TODO: Add character Filter by name
 const FilterContext = createContext();
 export default() => {
   const [getCharacters, { data, loading }] = charactersQuery();
