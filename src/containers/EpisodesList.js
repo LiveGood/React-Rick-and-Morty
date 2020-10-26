@@ -9,8 +9,13 @@ import { usePagination } from '../components/hooks'
 import episodesQuery from '../queries/Episodes'
 import EpisodeItem from '../components/EpisodeItem'
 import NotFoundItem from '../components/NotFoundItem'
-import Pagination from '../components/Pagination'
 import { Select, Input } from '../components/common/'
+import Pagination from '../components/Pagination'
+
+// Bit components: trial
+// import Pagination from '../components/Pagination'
+// TOO: try another time
+// import Pagination from '@bit/livegood.basic-react-components.pagination';
 
 const PageHead = styled.div`
 	margin-bottom: 30px;

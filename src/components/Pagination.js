@@ -29,7 +29,8 @@ const PaginationWrapper = styled.div`
         box-shadow: 0 0 10px -5px rgba(0,0,0,0.2);
 
         &:focus {
-          
+          border: 0;
+					outline: none;
         }
       }
 
