@@ -1,6 +1,5 @@
 import React, { useEffect, useState, createContext } from 'react';
 import { Row, Col } from 'react-grid-system';
-import { debounce } from 'lodash';
 
 import { usePagination } from '../hooks'
 import { episodesQuery } from '../queries'
@@ -15,8 +14,7 @@ import Filter from '../components/Filter'
 // import Pagination from '@bit/livegood.basic-react-components.pagination';
 // TODO: Add Translation
 
-export const FilterContext = createContext();
-
+const FilterContext = createContext();
 export default () => {
   const [getEpisodes, { data, loading }] = episodesQuery()
   const {results: episodes, info} = data?.episodes ?? {};
@@ -24,6 +22,7 @@ export default () => {
   const selectedPage = usePagination({ next, prev })
   const [filters, setFilters] = useState(null);
   const hasItems = Boolean(episodes?.length);
+  const propName = 'episodes';
 
   useEffect(()=> {
     getEpisodes()
@@ -35,19 +34,14 @@ export default () => {
     }
   }, [filters, getEpisodes])
 
-  const changeInputFilter = debounce(({ target }) => {
-    setFilters({ name: target.value })
-  }, 600)
-
   return (
     <div>
       <FilterContext.Provider value={{
         items: episodes, 
         queryCall: episodesQuery, 
-        propName: 'episode',
+        propName, 
         filters, 
         setFilters, 
-        changeInputFilter,
         showSelect: true,
         selectValues: {
           label: "Episode", 
@@ -58,12 +52,14 @@ export default () => {
           placeholder: "Filter by name"
         }
       }}>
-        <Filter />
+        <Filter context={FilterContext}/>
       </FilterContext.Provider>
       {!loading && hasItems && (
         <Row>
           {episodes?.map(({ id, episodeID, name, air_date, episode, characters }) => (
-            <Col key={`episode-${id}-${name}`} xs={12} sm={6} lg={3} style={{ marginBottom: 20 }}>
+            <Col key={`episode-${id}-${name}`} 
+              xs={12} sm={6} lg={3} 
+              style={{ marginBottom: 20 }}>
               <EpisodeItem {...{ episodeID, name, air_date, episode, characters }}/>
             </Col>
           ))}
@@ -76,12 +72,10 @@ export default () => {
           currentPage={selectedPage}
           onChange={(page) => getEpisodes({ variables: {page} })}
         />
-      )
-
-      }
+      )}
 
       {!loading && !hasItems && (
-        <NotFoundItem/>
+        <NotFoundItem {...{ propName }}/>
       )}
     </div>
   )

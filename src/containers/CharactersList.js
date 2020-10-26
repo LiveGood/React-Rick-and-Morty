@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { Row, Col } from 'react-grid-system';
-import {usePagination} from '../hooks'
-import { charactersQuery } from '../queries';
-import Pagination from '../components/Pagination'
+
 import CharacterItem from 'components/CharacterItem';
-import { debounce } from 'lodash';
+import {usePagination} from '../hooks'
+import Pagination from '../components/Pagination'
+import { charactersQuery } from '../queries';
+import Filter from '../components/Filter'
+import NotFoundItem from 'components/NotFoundItem';
 
 // TODO: Add character Filter by name
+const FilterContext = createContext();
 export default() => {
   const [getCharacters, { data, loading }] = charactersQuery();
   const { results: characters, info} = data?.characters ?? {};
   const { pages, next, prev } = info ?? {};
-  const selectedPage = usePagination({ next, prev })
+  const selectedPage = usePagination({ next, prev });
   const [filters, setFilters] = useState(null);
-  const hasItems = Boolean(characters?.length)
+  const hasItems = Boolean(characters?.length);
+  const propName = 'characters';
 
   useEffect(() => {
     getCharacters();
@@ -25,12 +29,22 @@ export default() => {
     }
   }, [filters, getCharacters])
 
-  const changeInputFilter = debounce(({ target }) => {
-    setFilters({ name: target.value })
-  }, 600)
-
   return (
     <div>
+      <FilterContext.Provider value={{
+        items: characters, 
+        queryCall: charactersQuery, 
+        propName,
+        filters, 
+        setFilters, 
+        inputValues: {
+          label: "Name", 
+          placeholder: "Filter by name"
+        }
+      }}>
+        <Filter context={FilterContext}/>
+      </FilterContext.Provider>
+
       {!loading && hasItems && (
         <Row>
           {characters?.map(({ id, name, image, gender, status }) => (
@@ -48,15 +62,13 @@ export default() => {
 				<Pagination
           {...{ pages }}
           currentPage={selectedPage}
-					onChange={(page)=> getCharacters(
-						{
-							variables: {
-								page: page,
-							}
-						}
-					)}
+					onChange={(page)=> getCharacters({variables: { page }})}
 				/>
 			)}
+
+      {!loading && !hasItems && (
+        <NotFoundItem {...{ propName }}/>
+      )}
     </div>
   )
 }

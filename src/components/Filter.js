@@ -1,8 +1,9 @@
 import React, { useEffect, useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { Row, Col } from 'react-grid-system';
+import { debounce } from 'lodash';
+
 import { Select, Input } from '../components/common/'
-import { FilterContext } from '../containers/EpisodesList'
 
 const PageHead = styled.div`
 	margin-bottom: 30px;
@@ -15,12 +16,18 @@ PageHead.Filter = styled.div`
   `}
 `;
 
-const InputFilter = () => {
-  const { filters, changeInputFilter } = useContext(FilterContext)
+
+const InputFilter = ({ context }) => {
+  const { filters, setFilters, inputValues } = useContext(context)
+
+  const changeInputFilter = debounce(({ target }) => {
+    setFilters({ name: target.value })
+  }, 600)
 
   return <Input
-    name="name"
-    label="name" 
+    name="name"  // change later if needed
+    label={inputValues.label}
+    placeholder={inputValues.placeholder}
     defaultValue={filters?.name}
     onChange={ev => {
       ev.persist();
@@ -29,9 +36,9 @@ const InputFilter = () => {
   />
 }
 
-const SelectFilter = () => {
-  const {items, propName, filters, setFilters, selectValues} = useContext(FilterContext)
-  
+const SelectFilter = ({ context }) => {
+  const {items, propName, filters, setFilters, selectValues} = useContext(context)
+
   return (
     <Select
       label={selectValues.label} 
@@ -44,8 +51,8 @@ const SelectFilter = () => {
   )
 }
 
-const Filter = function() {
-  const {filters, queryCall, showSelect } = useContext(FilterContext)
+const Filter = function({ context }) {
+  const {filters, queryCall, showSelect } = useContext(context)
   const [getData, { data }] = queryCall();
   
   useEffect(() => {
@@ -63,11 +70,11 @@ const Filter = function() {
       <PageHead.Filter>
         <Row>
           <Col>
-            <InputFilter />
+            <InputFilter {...{ context }}/>
           </Col>
           {showSelect && (
             <Col>
-              <SelectFilter />
+              <SelectFilter {...{ context }}/>
             </Col>
           )}
         </Row>

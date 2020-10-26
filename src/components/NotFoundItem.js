@@ -23,4 +23,4 @@ const NotFoundMessage = styled.div`
 	`}
 `
 
-export default () => <NotFoundMessage>{'No episodes'}</NotFoundMessage>
+export default ({ propName }) => <NotFoundMessage>{`No ${propName}`}</NotFoundMessage>
