@@ -7,7 +7,7 @@ import { ArrowIcon } from '../assets/svg'
 // TODO: Add page change to Character page
 const Item = styled.div`
   background: ${({ theme }) => theme.colors.white};
-  box-shadow: 0 0 11px -5px rgba(0,0,0,0.3);
+  box-shadow: ${({ theme }) => theme.materialShadow};
   border-radius: 5px;
 	padding: 20px 20px 15px 20px;
 	height: 100%;

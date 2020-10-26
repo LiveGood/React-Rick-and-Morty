@@ -3,6 +3,7 @@ import { Row, Col } from 'react-grid-system';
 import {usePagination} from '../hooks'
 import { charactersQuery } from '../queries';
 import Pagination from '../components/Pagination'
+import CharacterItem from 'components/CharacterItem';
 
 export default() => {
   const [getCharacters, { data, loading }] = charactersQuery();
@@ -24,7 +25,7 @@ export default() => {
               style={{ marginBottom: 20 }}
               xs={12} sm={6} md={6} lg={3}
             > 
-              <div>{name}</div>
+              <CharacterItem  {...{ id, name, image, gender, status }} />
             </Col>
           ))}
         </Row>

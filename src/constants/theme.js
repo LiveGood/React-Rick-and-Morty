@@ -42,7 +42,7 @@ export default {
       },
       chip: {
         background: primaryLight,
-        color: '#fff',
+        color: '#fff',  
       },
       pagination: {
         background: '#fff',
