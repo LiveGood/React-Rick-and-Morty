@@ -1,3 +1,4 @@
+import { theme } from 'constants';
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 
@@ -21,7 +22,53 @@ const Tab = styled.li`
   flex: 1; // todo
   text-align: center;
   text-transform: uppercase;
+  background: ${({ theme, isActive }) => 
+    isActive ?
+    theme.colors.tabContent.activeBackground :
+    theme.colors.tabContent.background
+  };
+  color: ${({ theme, isActive }) => 
+    isActive ?
+    theme.colors.tabContent.activeColor :
+    theme.colors.tabContent.color
+  };
+  cursor: ${({ isActive }) => isActive ? 'default' : 'pointer'};
 
+
+  svg {
+    display: block;
+    margin: 0 auto;
+    fill: ${({ theme, isActive }) => 
+      isActive ?
+      theme.colors.tabContent.activeColor :
+      theme.colors.tabContent.color
+    }
+  };
+
+  ${({ theme }) => css`
+    @media ${theme.mediaQueries.smUp} {
+      padding: 20px 15px;
+      font-size: 15px;
+      
+      svg {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 12px;
+      }
+    }
+
+    @media ${theme.mediaQueries.xsOnly} {
+      padding: 10px 5px;
+      font-size: 11px;
+      
+      svg {
+        width: 18px;
+        height: 18px;
+        margin-bottom: 5px;
+      }
+    }
+  `};
+  
 `;
 
 function TabContent({ items }) {
