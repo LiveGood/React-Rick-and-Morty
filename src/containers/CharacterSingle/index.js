@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { Row, Col } from 'react-grid-system';
 import { characterSingleQuery, charactersQuery } from 'queries'
 import { InfoIcon, EpisodeIcon, PlanetIcon, ExploreIcon } from 'assets/svg';
-
+import TabContent from 'components/TabContent'
 
 const Avatar = styled.div`
   overflow: hidden;
@@ -49,8 +49,62 @@ const Name = styled.div`
 
 export default ({ match }) => {
   const [character, { data, loading }] = characterSingleQuery()
-  const { name, image } = data?.character ?? {};
+  const { 
+    name, 
+    image, 
+    status,
+    species,
+    type,
+    gender,
+    episode,
+    location,
+    origin
+  } = data?.character ?? {};
   const ID = match?.params.id
+
+  const TAB_CONTENT = [
+    {
+      id: 1,
+      label: 'generalInfo',
+      component: <div>General info</div>,
+      icon: InfoIcon,
+      componentProps: {
+        data: {
+          status,
+          species,
+          type,
+          gender
+        }
+      }
+    },
+    {
+      id: 2,
+      label: 'episode',
+      component: <div>Episode tab</div>,
+      icon: EpisodeIcon,
+      componentProps: {
+        data: episode
+      }
+    },
+    {
+      id: 3,
+      label: 'origin',
+      component: <div>Origin tab</div>,
+      icon: ExploreIcon,
+      componentProps: {
+        data: origin
+      }
+    },
+    {
+      id: 4,
+      label: 'location',
+      component: <div>Location tab</div>,
+      icon: ExploreIcon,
+      componentProps: {
+        data: location
+      }
+    }
+  ]
 
   useEffect(() => {
     character({variables: {id: ID}})
@@ -65,6 +119,8 @@ export default ({ match }) => {
               <img src={image} alt={name} />
             </Avatar>
             <Name>{name}</Name>
+
+            <TabContent item={TAB_CONTENT} />
           </Col>
         </Row>
       )}
