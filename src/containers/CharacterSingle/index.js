@@ -90,7 +90,7 @@ export default ({ match }) => {
       id: 3,
       label: 'origin',
       component: <div>Origin tab</div>,
-      icon: ExploreIcon,
+      icon: PlanetIcon,
       componentProps: {
         data: origin
       }
@@ -120,7 +120,7 @@ export default ({ match }) => {
             </Avatar>
             <Name>{name}</Name>
 
-            <TabContent item={TAB_CONTENT} />
+            <TabContent items={TAB_CONTENT} />
           </Col>
         </Row>
       )}

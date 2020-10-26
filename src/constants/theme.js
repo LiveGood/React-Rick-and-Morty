@@ -50,6 +50,12 @@ export default {
         activeBackground: primaryLight,
         activeColor: '#fff'
       },
+      tabContent: {
+        background: primaryLight,
+        activeBackground: '#fff',
+        color: '#fff',
+        activeColor: primaryLight
+      },
       title: '#6b6b6b',
     },
     ...baseTheme
