@@ -1,87 +1,21 @@
-import { Concast } from '@apollo/client/utilities';
-import React, { useEffect, useState } from 'react';
-import styled, { css } from 'styled-components';
+import React, { useEffect, useState, createContext } from 'react';
 import { Row, Col } from 'react-grid-system';
 import { debounce } from 'lodash';
-
 
 import { usePagination } from '../hooks'
 import { episodesQuery } from '../queries'
 import EpisodeItem from '../components/EpisodeItem'
 import NotFoundItem from '../components/NotFoundItem'
-import { Select, Input } from '../components/common/'
 import Pagination from '../components/Pagination'
+import Filter from '../components/Filter'
 
 // Bit components: trial
 // import Pagination from '../components/Pagination'
 // TOO: try another time
 // import Pagination from '@bit/livegood.basic-react-components.pagination';
-
-const PageHead = styled.div`
-	margin-bottom: 30px;
-`
 // TODO: Add Translation
-PageHead.Filter = styled.div`
-  ${({ theme }) => css`
-    @media ${theme.mediaQueries.xsOnly} {
-      width: 100%;
-    }
 
-    @media ${theme.mediaQueries.smUp} {
-			width: 50%;
-		}
-  `}
-`;
-
-const Filter = function({ filters, setFilters }) {
-  const [getEpisodes, { data }] = episodesQuery();
-  const { results: episodes } = data?.episodes ?? [];
-
-  useEffect(() => {
-    getEpisodes()
-  }, [getEpisodes])
-
-  useEffect(() => {
-    if (filters) {
-      getEpisodes({ vriables: {filter: filters} })
-    }
-  }, [filters, getEpisodes])
-
-  const changeInputFilter = debounce(({ target }) => {
-    setFilters({ name: target.value })
-  }, 600)
-
-  return (
-    <PageHead>  
-      <PageHead.Filter>
-        <Row>
-          <Col>
-            <Input 
-              name="name"
-              label="name"
-              placeholder='Filter by name'
-              defaultValue={filters?.name}
-              onChange={ev => {
-                ev.persist();
-                changeInputFilter(ev);
-              }}
-            />
-          </Col>
-          <Col>
-            <Select
-              label="Episode"
-              placeholder="Select episode"
-              value={filters?.episode}
-              defaultValue={'default'}
-              options={episodes?.map(({ episode }) => ({ name: episode, value: episode }))}
-              onChange={ev => setFilters({ episode: ev.target.value })}
-            />
-          </Col>
-        </Row>
-      </PageHead.Filter>
-    </PageHead>
-  )
-}
+export const FilterContext = createContext();
 
 export default () => {
   const [getEpisodes, { data, loading }] = episodesQuery()
@@ -101,9 +35,31 @@ export default () => {
     }
   }, [filters, getEpisodes])
 
+  const changeInputFilter = debounce(({ target }) => {
+    setFilters({ name: target.value })
+  }, 600)
+
   return (
     <div>
-      <Filter {... {filters, setFilters}} />
+      <FilterContext.Provider value={{
+        items: episodes, 
+        queryCall: episodesQuery, 
+        propName: 'episode',
+        filters, 
+        setFilters, 
+        changeInputFilter,
+        showSelect: true,
+        selectValues: {
+          label: "Episode", 
+          placeholder: "Select episode"
+        },
+        inputValues: {
+          label: "Name", 
+          placeholder: "Filter by name"
+        }
+      }}>
+        <Filter />
+      </FilterContext.Provider>
       {!loading && hasItems && (
         <Row>
           {episodes?.map(({ id, episodeID, name, air_date, episode, characters }) => (

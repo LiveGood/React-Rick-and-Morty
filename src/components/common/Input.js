@@ -25,7 +25,9 @@ const InputComponent = ({ label, ...restProps }) => {
   return (
     <div>
       <FilterLabel>{label}</FilterLabel>
-		  <Input {... restProps} />
+      <Input 
+        {... restProps} 
+      />
     </div>
   )
 }
