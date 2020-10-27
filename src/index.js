@@ -1,10 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+import { en, bg } from './translations'
+
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
+
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources: {
+      bg: { translation: { ...bg } },
+      en: { translation: { ...en } }
+    },
+    fallbackLng: 'fr',
+  })
+
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_API,
