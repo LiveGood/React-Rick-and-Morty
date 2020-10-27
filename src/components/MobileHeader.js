@@ -152,8 +152,8 @@ export default ({ navItems })  => {
                   </NavLink>
                 </Nav.Item>
               ))}
-              <LanguageSwitch />
             </Nav>
+            <LanguageSwitch />
           </NavContainer>
         </NavOverlay>
       </AnimatedRender>
