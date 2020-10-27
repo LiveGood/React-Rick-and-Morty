@@ -1,4 +1,3 @@
-import { theme } from 'constants';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ArrowIcon } from '../assets/svg'

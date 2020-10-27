@@ -13,20 +13,12 @@ export const baseTheme = {
   mediaQueries,
 }
 
-const primaryLight = "#e85a4f";
-const buttonBgLight = '#fdbb1f';
-const buttonBgDark = '#2f343c';
-
-const primaryDark = '#24282f';
-const secondary = '#ff9800';
-const primary2 = '#edc566';
-
 export default {
   light: {
     colors: {
-      primary: primaryLight,
+      primary: "#e85a4f",
       sidebar: {
-        buttonBg: buttonBgLight
+        buttonBg: "#fdbb1f"
       },
       white: '#fff',
       divider: '#e8e8e8',
@@ -41,20 +33,20 @@ export default {
         color: '#757575',
       },
       chip: {
-        background: primaryLight,
+        background: "#e85a4f",
         color: '#fff',  
       },
       pagination: {
         background: '#fff',
         color: '#6b6b6b',
-        activeBackground: primaryLight,
+        activeBackground: "#e85a4f",
         activeColor: '#fff'
       },
       tabContent: {
-        background: primaryLight,
+        background: "#e85a4f",
         activeBackground: '#fff',
         color: '#fff',
-        activeColor: primaryLight
+        activeColor: "#e85a4f"
       },
       title: '#6b6b6b',
     },
@@ -62,9 +54,43 @@ export default {
   },
   dark: {
     colors: {
-      primary: primaryDark,
+      primary: "#24282f",
+      secondary: "#ff9800",
+      light: '#dadada',
+      card: "#3c3e44",
+      background: '#202329',
+      divider: '#505050',
+      title: '#afafaf',
+      label: {
+        background: "#2f343c",
+        color: '#a7a7a7',
+      },
+      chip: {
+        background: '#595b5f',
+        color: '#fff',
+      },
+			text: '#b1b1b1',
+      pagination: {
+        background: 'primaryDarkBg',
+        color: '#dadada',
+        activeBackground: '#777777',
+        activeColor: '#fff',
+      },
+      field: {
+        color: '#b1b1b1',
+        background: "#3c3e44",
+        borderColor: "#3c3e44",
+      },
+      tabContent: {
+        nav: {
+          background: "#24282f",
+          activeBackground: "#3c3e44",
+          color: '#dadada',
+          activeColor: '#dadada',
+        }
+      },
       sidebar: {
-        buttonBackground: buttonBgDark
+        buttonBackground: "#2f343c"
       }
     }
   },

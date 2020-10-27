@@ -66,7 +66,7 @@ export default ({ match }) => {
     {
       id: 1,
       label: 'generalInfo',
-      component: <div>General info</div>,
+      component: () => <div>General info</div>,
       icon: InfoIcon,
       componentProps: {
         data: {
@@ -80,7 +80,7 @@ export default ({ match }) => {
     {
       id: 2,
       label: 'episode',
-      component: <div>Episode tab</div>,
+      component: () => <div>Episode tab</div>,
       icon: EpisodeIcon,
       componentProps: {
         data: episode
@@ -89,7 +89,7 @@ export default ({ match }) => {
     {
       id: 3,
       label: 'origin',
-      component: <div>Origin tab</div>,
+      component: () => <div>Origin tab</div>,
       icon: PlanetIcon,
       componentProps: {
         data: origin
@@ -98,7 +98,7 @@ export default ({ match }) => {
     {
       id: 4,
       label: 'location',
-      component: <div>Location tab</div>,
+      component: () => <div>Location tab</div>,
       icon: ExploreIcon,
       componentProps: {
         data: location

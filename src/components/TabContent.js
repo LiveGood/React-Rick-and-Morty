@@ -68,17 +68,21 @@ const Tab = styled.li`
       }
     }
   `};
-  
 `;
 
-function TabContent({ items }) {
+const TabContent = styled.div`
+  background: ${({ theme }) => theme.colors.card};
+  padding: 20px;
+`;
+
+export default ({ items }) => {
   const [activeTab, setActiveTab] = useState(items[0]?.id);
 
   return (
     <TabContentWrapper>
       <TabNav>
-        {items.map(({ id, label, icon: Icon, }, index) => {
-          return <Tab
+        {items.map(({ id, label, icon: Icon, }, index) => (
+          <Tab
             key={`tab-content-nav-item-${id}${index}`}
             isActive={activeTab === id}
             onClick={() => setActiveTab(id)}
@@ -86,10 +90,19 @@ function TabContent({ items }) {
             {Icon && (<Icon />)}
             <span>{label}</span>
           </Tab>
-        })}
+        ))}
       </TabNav>
+
+      <TabContent>
+        {items.map(({ id, component: Component, componentProps }) => {
+          const isActive = id === activeTab;
+          return isActive ? (
+            <Component key={`tab-content-item-${id}`} {...componentProps} />
+          ) : null   
+        })}
+      </TabContent>
     </TabContentWrapper>
   )
 }
 
-export default TabContent
+
