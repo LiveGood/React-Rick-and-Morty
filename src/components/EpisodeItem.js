@@ -5,7 +5,7 @@ import { ArrowIcon } from '../assets/svg'
 // TODO: Add Translation
 // TODO: Add page change to Character page
 const Item = styled.div`
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.card};
   box-shadow: ${({ theme }) => theme.materialShadow};
   border-radius: 5px;
 	padding: 20px 20px 15px 20px;
@@ -80,7 +80,7 @@ Item.ExpandButton = styled.div`
   svg {
     width: 12px;
     height: 12px;
-    display: block;
+    display: block; 
     margin-left: 8px;
     fill: ${({ theme }) => theme.colors.text};
     transition: transform ${({ theme }) => theme.transition.default};

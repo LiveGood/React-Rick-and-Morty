@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { Logo as LogoSVG } from 'assets/svg';
 import { NavbarLogo, HeaderSidebarMainStyles, FlexCenter } from '../GlobalStyle'
 import { AnimatedRender } from './'
+import ThemeSwitch from './ThemeSwitch';
 
 const Header = styled.div`
   ${HeaderSidebarMainStyles}
@@ -27,7 +28,7 @@ Header.Toggle = styled.div`
     position: absolute;
     height: 3px;
     width: 100%;
-    background: ${({ theme }) => theme.colors.white};
+    background: ${({ theme }) => theme.colors.light};
     border-radius: 9px;
     opacity: 1;
     left: 0;
@@ -102,7 +103,7 @@ Nav.Item = styled.li`
 
   a {
     ${FlexCenter}
-		color: ${({ theme }) => theme.colors.white};
+		color: ${({ theme }) => theme.colors.light};
 		text-transform: uppercase;
 		font-size: 20px;
 		text-align: center;
@@ -114,7 +115,7 @@ Nav.Item = styled.li`
 		}
 
     svg {
-      fill: ${({ theme }) => theme.colors.white};
+      fill: ${({ theme }) => theme.colors.light};
       width: 20px;
       height: 20px;
       margin-right: 10px;
@@ -127,6 +128,7 @@ export default ({ navItems })  => {
   
   return (
     <Header>
+      <ThemeSwitch />
       <NavbarLogo size={40} to='/'>
             <LogoSVG />
       </NavbarLogo>
@@ -142,14 +144,13 @@ export default ({ navItems })  => {
           <NavContainer>
             <Nav>
               {navItems.map(({ to, name, exact, icon: Icon }, index)=> (
-									<Nav.Item key={index}>
-										<NavLink {...{ to, exact }} onClick={()=> setIsOpen(false)}>
-											<Icon />
-											{name}
-										</NavLink>
-									</Nav.Item>
-								))
-              }
+                <Nav.Item key={index}>
+                  <NavLink {...{ to, exact }} onClick={()=> setIsOpen(false)}>
+                    <Icon />
+                    {name}
+                  </NavLink>
+                </Nav.Item>
+              ))}
             </Nav>
           </NavContainer>
         </NavOverlay>

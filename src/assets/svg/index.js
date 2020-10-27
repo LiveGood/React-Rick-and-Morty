@@ -5,4 +5,4 @@ export { default as ArrowIcon } from './Arrow'
 export { default as InfoIcon } from './Info'
 export { default as PlanetIcon } from './Planet'
 export { default as ExploreIcon } from './Explore'
-
+export { default as ThemeSwitchIcon } from './ThemeSwitch'

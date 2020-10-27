@@ -9,15 +9,17 @@ const PageHead = styled.div`
 	margin-bottom: 30px;
 `
 PageHead.Filter = styled.div`
-  ${({ theme }) => css`
-    @media ${theme.mediaQueries.xsOnly} {
-      width: 100%;
-    }
+  ${({ theme }) => {
+    return css`
+      @media ${theme.mediaQueries.xsOnly} {
+        width: 100%;
+      }
 
-    @media ${theme.mediaQueries.smUp} {
-			width: 50%;
-		}
-  `}
+      @media ${theme.mediaQueries.smUp} {
+        width: 50%;
+      }
+    `
+  }}
 `;
 
 
@@ -51,7 +53,6 @@ const SelectFilter = ({ context }) => {
       defaultValue={'default'}
       onChange={ev => setFilters({ [propNamePlural]: ev.target.value })}
       options={items?.map((item) => {
-        console.log();
         return { name: item[propNameSingle], value: item[propNameSingle] }
       })}
     />

@@ -21,7 +21,7 @@ export const NavbarLogo = styled(Link)`
 	justify-content: space-between;
   
   svg {
-    fill: ${({ theme }) => theme.colors.white};
+    fill: ${({ theme }) => theme.colors.light};
     width: 100%;
     height: 100%;
   }

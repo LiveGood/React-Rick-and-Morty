@@ -20,7 +20,8 @@ export default {
       sidebar: {
         buttonBg: "#fdbb1f"
       },
-      white: '#fff',
+      light: '#fff',
+      card: '#fff',
       divider: '#e8e8e8',
       text: '#6f6f6f',
       field: {
@@ -57,6 +58,7 @@ export default {
       primary: "#24282f",
       secondary: "#ff9800",
       light: '#dadada',
+      card: '#fff',
       card: "#3c3e44",
       background: '#202329',
       divider: '#505050',
@@ -90,8 +92,9 @@ export default {
         }
       },
       sidebar: {
-        buttonBackground: "#2f343c"
+        buttonBg: "#2f343c"
       }
-    }
+    },
+    ...baseTheme
   },
 }

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { Logo as LogoSVG } from '../assets/svg'
 import { NavbarLogo, HeaderSidebarMainStyles } from '../GlobalStyle'
+import ThemeSwitch from './ThemeSwitch'
 
 const Sidebar = styled.div`
   ${HeaderSidebarMainStyles}
@@ -25,7 +26,7 @@ Sidebar.Nav = styled.ul`
 
 Sidebar.NavItem  = styled.li`
   a {
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.light};
     text-transform: uppercase;
 		font-size: 11px;
 		text-align: center;
@@ -40,7 +41,7 @@ Sidebar.NavItem  = styled.li`
   }
 
   svg {
-    fill: ${({ theme }) => theme.colors.white};
+    fill: ${({ theme }) => theme.colors.light};
     width: 26px;
     height: 26px;
     display: block;
@@ -48,9 +49,19 @@ Sidebar.NavItem  = styled.li`
   }
 `;
 
+Sidebar.Bottom = styled.div`
+	position: absolute;
+	bottom: 15px;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+`
+
 export default ({ navItems }) => {
   return (
     <Sidebar>
+
       <Sidebar.TopContainer>
         <NavbarLogo size={55} to='/'>
             <LogoSVG />
@@ -68,6 +79,10 @@ export default ({ navItems }) => {
           ))}
         </Sidebar.Nav>
       </Sidebar.TopContainer>
+      
+      <Sidebar.Bottom>
+        <ThemeSwitch />
+      </Sidebar.Bottom>
     </Sidebar>
   )
 }

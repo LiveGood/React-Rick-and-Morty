@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components'
 
 const NotFoundMessage = styled.div`
-	background: ${({ theme })=> theme.colors.white};
+	background: ${({ theme })=> theme.colors.light};
 	color: ${({ theme })=> theme.colors.text};
 	padding: 50px 20px;
 	text-align: center;
