@@ -1,5 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components'
+import { useTranslation } from 'react-i18next'
+import { capitalize } from 'lodash'
 
 const NotFoundMessage = styled.div`
 	background: ${({ theme })=> theme.colors.light};
@@ -23,4 +25,9 @@ const NotFoundMessage = styled.div`
 	`}
 `
 
-export default ({ propName }) => <NotFoundMessage>{`No ${propName}`}</NotFoundMessage>
+export default ({ propName }) => {
+	const { t } = useTranslation()
+	const translationProp = 'noItems' + capitalize(propName);
+	
+	return <NotFoundMessage>{t(translationProp)}</NotFoundMessage>
+}

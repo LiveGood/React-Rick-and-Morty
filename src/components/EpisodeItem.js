@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ArrowIcon } from '../assets/svg'
+import { useTranslation } from 'react-i18next';
 
 // TODO: Add Translation
 // TODO: Add page change to Character page
@@ -89,6 +90,7 @@ Item.ExpandButton = styled.div`
 `;
 
 export default ({ episodeID, name, air_date, episode, characters }) => {
+  const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -115,7 +117,7 @@ export default ({ episodeID, name, air_date, episode, characters }) => {
 
       <div>
         <Item.ExpandButton {...{isOpen}} s onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? 'shrink' : 'expand'}
+          {isOpen ? t('shrink') : t('expand')}
           <ArrowIcon />
         </Item.ExpandButton>
       </div>

@@ -26,7 +26,6 @@ const AppElement = styled.div`
   }
 `;
 
-
 const ROUTES = [
   {
     path: '/',
@@ -42,10 +41,8 @@ const ROUTES = [
   }
 ]
 
-
-
 function App() {
-  const { t } = useTranslation()
+  const { t } = useTranslation()    
   const LOCAL_STORAGE_THEME_KEY = 'themeMode'
   let localStorageThemeMode = localStorage.getItem(LOCAL_STORAGE_THEME_KEY);
   if (localStorageThemeMode !== 'light' &&

@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
 import ReactPaginate from 'react-paginate';
+import { theme } from 'constants';
+import { useTranslation } from 'react-i18next';
 
 const PaginationWrapper = styled.div`
   margin: 20px 0 30px 0;
@@ -58,6 +60,8 @@ const PaginationWrapper = styled.div`
 `;
 
 function Pagination({ pages, currentPage, onChange }) {
+  const { t } = useTranslation()    
+
   return (
     <PaginationWrapper>
       <ReactPaginate 
@@ -67,8 +71,8 @@ function Pagination({ pages, currentPage, onChange }) {
         pageRangeDisplayed={5}
         disableInitialCallback
         activeClassName='active'
-        previousLabel='Prev'
-        nextLabel='Next'
+        previousLabel={t('prev')}
+        nextLabel={t('next')}
         breakLabel='...'
         onPageChange={({ selected }) => onChange(selected + 1)}
       />

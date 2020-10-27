@@ -18,7 +18,7 @@ i18n
       bg: { translation: { ...bg } },
       en: { translation: { ...en } }
     },
-    fallbackLng: 'fr',
+    fallbackLng: 'bg',
   })
 
 

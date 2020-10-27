@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { Row, Col } from 'react-grid-system';
 import { debounce } from 'lodash';
-
+import { useTranslation } from 'react-i18next';
 import { Select, Input } from '../components/common/'
 
 const PageHead = styled.div`
@@ -25,16 +25,18 @@ PageHead.Filter = styled.div`
 `;
 
 const InputFilter = ({ context }) => {
+  const { t } = useTranslation()    
   const { filters, setFilters, inputValues } = useContext(context)
 
   const changeInputFilter = debounce(({ target }) => {
     setFilters({ name: target.value })
   }, 600)
+  console.log(inputValues.placeholder)
 
   return <Input
     name="name"  // change later if needed
-    label={inputValues.label}
-    placeholder={inputValues.placeholder}
+    label={t('name')}
+    placeholder={t('filterByName')}
     defaultValue={filters?.name}
     onChange={ev => {
       ev.persist();
@@ -45,11 +47,12 @@ const InputFilter = ({ context }) => {
 
 const SelectFilter = ({ context }) => {
   const {items, propNameSingle, propNamePlural, filters, setFilters, selectValues} = useContext(context)
+  const { t } = useTranslation()    
   
   return (
     <Select
-      label={selectValues.label} 
-      placeholder={selectValues.placeholder}
+      label={t('episode')} 
+      placeholder={t('selectEpisode')}
       value={filters && filters[propNamePlural]}
       defaultValue={'default'}
       onChange={ev => setFilters({ [propNamePlural]: ev.target.value })}
