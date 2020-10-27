@@ -9,19 +9,20 @@ const PageHead = styled.div`
 	margin-bottom: 30px;
 `
 PageHead.Filter = styled.div`
-  ${({ theme }) => {
-    return css`
+  ${({ theme }) => css`
       @media ${theme.mediaQueries.xsOnly} {
         width: 100%;
       }
 
       @media ${theme.mediaQueries.smUp} {
-        width: 50%;
+        width: ${({ showSelect }) => showSelect ? '50%' : '25%'};
       }
-    `
-  }}
-`;
 
+      @media ${theme.mediaQueries.smOnly} {
+        width: 100%;
+      }
+    `}
+`;
 
 const InputFilter = ({ context }) => {
   const { filters, setFilters, inputValues } = useContext(context)
@@ -75,7 +76,7 @@ const Filter = function({ context }) {
 
   return (
     <PageHead>  
-      <PageHead.Filter>
+      <PageHead.Filter {...{showSelect}} >
         <Row>
           <Col>
             <InputFilter {...{ context }}/>

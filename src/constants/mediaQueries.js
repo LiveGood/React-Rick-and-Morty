@@ -1,5 +1,13 @@
 import { breakpoints } from './'
 
+/* 
+  sm: 768,
+  md: 1024,
+  lg: 1440,
+  xl: 1920,
+*/
+
+
 const mediaQueries =  {
   // XS
   xsOnly: `(max-width: ${breakpoints.sm - 1}px)`,
