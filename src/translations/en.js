@@ -27,4 +27,9 @@ export default {
 	prev: 'Previous',
 	next: 'Next',
 	none: 'None',
+	male: 'Male',
+	female: 'Female',
+	unknown: 'Unknown',
+	alive: 'Alive',
+	dead: 'Dead',
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
+import { toLower } from 'lodash';
+import { useTranslation } from 'react-i18next';
 
 const Item = styled.div`
   background: ${({ theme }) => theme.colors.card};
@@ -51,6 +53,7 @@ Item.Status = styled.span`
 `;
 
 export default ({ id, name, image, gender, status }) => {
+  const { t } = useTranslation();
   let history = useHistory();
 
   return (
@@ -60,8 +63,8 @@ export default ({ id, name, image, gender, status }) => {
       </Item.Image>
       <Item.Content>
         <Item.Name>{name}</Item.Name>
-        <Item.Gender>{gender}</Item.Gender>
-        <Item.Status>{status}</Item.Status>
+        <Item.Gender>{t(toLower(gender))}</Item.Gender>
+        <Item.Status>{t(toLower(status))}</Item.Status>
       </Item.Content>
     </Item>
   )

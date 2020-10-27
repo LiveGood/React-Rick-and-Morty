@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { Row, Col } from 'react-grid-system';
+import { useTranslation } from 'react-i18next';
+
 import { characterSingleQuery, charactersQuery } from 'queries'
 import { InfoIcon, EpisodeIcon, PlanetIcon, ExploreIcon } from 'assets/svg';
 import TabContent from 'components/TabContent'
@@ -48,6 +50,7 @@ const Name = styled.div`
 `;
 
 export default ({ match }) => {
+  const { t } = useTranslation()    
   const [character, { data, loading }] = characterSingleQuery()
   const { 
     name, 
@@ -65,7 +68,7 @@ export default ({ match }) => {
   const TAB_CONTENT = [
     {
       id: 1,
-      label: 'generalInfo',
+      label: t('generalInfo'),
       component: () => <div>General info</div>,
       icon: InfoIcon,
       componentProps: {
@@ -79,7 +82,7 @@ export default ({ match }) => {
     },
     {
       id: 2,
-      label: 'episode',
+      label: t('episode'),
       component: () => <div>Episode tab</div>,
       icon: EpisodeIcon,
       componentProps: {
@@ -88,7 +91,7 @@ export default ({ match }) => {
     },
     {
       id: 3,
-      label: 'origin',
+      label: t('origin'),
       component: () => <div>Origin tab</div>,
       icon: PlanetIcon,
       componentProps: {
@@ -97,7 +100,7 @@ export default ({ match }) => {
     },
     {
       id: 4,
-      label: 'location',
+      label: t('location'),
       component: () => <div>Location tab</div>,
       icon: ExploreIcon,
       componentProps: {

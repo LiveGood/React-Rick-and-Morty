@@ -27,4 +27,9 @@ export default {
 	prev: 'Предишна',
 	next: 'Следваща',
 	none: 'Няма',
+	male: 'Мъж',
+	female: 'Жена',
+	unknown: 'Неизвестен',
+	alive: 'Жив',
+	dead: 'Мъртъв', 
 }
