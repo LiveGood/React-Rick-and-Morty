@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
+
 import { Logo as LogoSVG } from '../assets/svg'
 import { NavbarLogo, HeaderSidebarMainStyles } from '../GlobalStyle'
 import ThemeSwitch from './ThemeSwitch'

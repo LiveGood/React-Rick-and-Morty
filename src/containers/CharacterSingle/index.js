@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { Row, Col } from 'react-grid-system';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';``
 
 import { characterSingleQuery, charactersQuery } from 'queries'
 import { InfoIcon, EpisodeIcon, PlanetIcon, ExploreIcon } from 'assets/svg';

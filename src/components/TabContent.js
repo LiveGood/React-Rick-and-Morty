@@ -19,7 +19,7 @@ const TabNav = styled.ul`
 
 const Tab = styled.li`
   line-height: 1;
-  flex: 1; // todo
+  flex: 1; 
   text-align: center;
   text-transform: uppercase;
   background: ${({ theme, isActive }) => 
@@ -33,7 +33,6 @@ const Tab = styled.li`
     theme.colors.tabContent.color
   };
   cursor: ${({ isActive }) => isActive ? 'default' : 'pointer'};
-
 
   svg {
     display: block;

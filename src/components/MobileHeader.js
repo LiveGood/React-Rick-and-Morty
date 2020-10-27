@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
+
 import { Logo as LogoSVG } from 'assets/svg';
 import { NavbarLogo, HeaderSidebarMainStyles, FlexCenter } from '../GlobalStyle'
 import { AnimatedRender } from './'

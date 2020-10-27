@@ -85,16 +85,14 @@ function App() {
             </ResponsiveRender>
           </ThemeSwtichContext.Provider>
 
-          {ROUTES.map(({ path, component, ...restProps })=> {
-            return (
-              <Route
-                key={`route-${path}`}
-                exact
-                {...{ path, component }}
-                {...restProps}
-              />
-            )
-          })}
+          {ROUTES.map(({ path, component, ...restProps })=> (
+            <Route
+              key={`route-${path}`}
+              exact
+              {...{ path, component }}
+              {...restProps}
+            />
+          ))}
         </Router>
       </AppElement>
       <GlobalStyle />

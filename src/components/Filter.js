@@ -31,7 +31,6 @@ const InputFilter = ({ context }) => {
   const changeInputFilter = debounce(({ target }) => {
     setFilters({ name: target.value })
   }, 600)
-  console.log(inputValues.placeholder)
 
   return <Input
     name="name"  // change later if needed

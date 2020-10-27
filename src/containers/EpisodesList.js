@@ -8,11 +8,6 @@ import NotFoundItem from '../components/NotFoundItem'
 import { usePagination } from '../hooks'
 import { episodesQuery } from '../queries'
 
-// Bit components: trial
-// TODO: try another time
-// import Pagination from '@bit/livegood.basic-react-components.pagination';
-// TODO: Add Translation
-
 const FilterContext = createContext();
 export default () => {
   const [getEpisodes, { data, loading }] = episodesQuery()

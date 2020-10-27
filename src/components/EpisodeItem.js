@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { ArrowIcon } from '../assets/svg'
 import { useTranslation } from 'react-i18next';
 
-// TODO: Add Translation
-// TODO: Add page change to Character page
 const Item = styled.div`
   background: ${({ theme }) => theme.colors.card};
   box-shadow: ${({ theme }) => theme.materialShadow};
@@ -92,7 +90,6 @@ Item.ExpandButton = styled.div`
 export default ({ episodeID, name, air_date, episode, characters }) => {
   const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)
-
   return (
     <Item>
       <Item.Head>
@@ -100,7 +97,7 @@ export default ({ episodeID, name, air_date, episode, characters }) => {
         <div><Item.Episode>{episode}</Item.Episode></div>
       </Item.Head>
 
-      <Item.Date>{air_date}</Item.Date>
+      <Item.Date>{t(air_date)}</Item.Date>
 
       <Item.Characters>
        <Item.Collapse {...{ isOpen}}>

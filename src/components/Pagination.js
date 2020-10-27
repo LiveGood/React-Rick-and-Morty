@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
 import ReactPaginate from 'react-paginate';
-import { theme } from 'constants';
 import { useTranslation } from 'react-i18next';
 
 const PaginationWrapper = styled.div`
