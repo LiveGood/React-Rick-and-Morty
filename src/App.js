@@ -35,7 +35,6 @@ const ROUTES = [
   {
     path: '/characters',
     component: CharactersList,
-
   },
   {
     path: '/characters/:id',

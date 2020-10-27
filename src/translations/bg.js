@@ -1,6 +1,6 @@
 export default {
   episodes: 'Епизоди',
-  characters: 'Георои',
+  characters: 'Герои',
   loading: 'Зареждане',
 	rickAndMorty: 'The Rick and Morty',
 	lang: {

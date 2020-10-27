@@ -5,6 +5,7 @@ import { Logo as LogoSVG } from 'assets/svg';
 import { NavbarLogo, HeaderSidebarMainStyles, FlexCenter } from '../GlobalStyle'
 import { AnimatedRender } from './'
 import ThemeSwitch from './ThemeSwitch';
+import LanguageSwitch from './LanguageSwitch'
 
 const Header = styled.div`
   ${HeaderSidebarMainStyles}
@@ -151,6 +152,7 @@ export default ({ navItems })  => {
                   </NavLink>
                 </Nav.Item>
               ))}
+              <LanguageSwitch />
             </Nav>
           </NavContainer>
         </NavOverlay>

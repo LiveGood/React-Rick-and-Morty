@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { Logo as LogoSVG } from '../assets/svg'
 import { NavbarLogo, HeaderSidebarMainStyles } from '../GlobalStyle'
 import ThemeSwitch from './ThemeSwitch'
+import LanguageSwitch from './LanguageSwitch'
 
 const Sidebar = styled.div`
   ${HeaderSidebarMainStyles}
@@ -67,6 +68,7 @@ export default ({ navItems }) => {
             <LogoSVG />
         </NavbarLogo>
         
+        <LanguageSwitch />
         <Sidebar.Nav>
           {navItems.map(({ to, name, exact, icon: Icon }) => (
             <Sidebar.NavItem key={`sidebar-nav-item-${name}`}>
